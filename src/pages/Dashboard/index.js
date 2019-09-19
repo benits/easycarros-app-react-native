@@ -17,16 +17,12 @@ import styles from './styles';
 
 export default class Dashboard extends Component {
   
-  constructor (props) {
-    super(props)
-    this.state = {
+ state = {
       loggedTkn: '',
       list: [],
       plate: ''
-      
-    };
-  }
-
+ }
+   
 
   logout = async () => {
     this.props.navigation.navigate('Main');
@@ -38,7 +34,7 @@ export default class Dashboard extends Component {
     try {
       const response = await api.get('vehicle');
 
-      const { list } = response.data.data['data'];
+      const { list } = response.data;
 
       this.setState({ list });
       
@@ -75,7 +71,16 @@ export default class Dashboard extends Component {
   };
 
  
-    
+  async componentDidMount() {
+    const token = await AsyncStorage.getItem('@easycarros:token');
+
+    if (token) {
+      this.getList();
+    } else {
+      this.props.navigation.navigate('Main');
+    }
+  }
+ 
 
 
   render() {
@@ -112,7 +117,11 @@ export default class Dashboard extends Component {
             { !!this.state.errorMessage && <View style={styles.containerError}><Text style={styles.textLightError}>{ this.state.errorMessage }</Text></View> }           
         </View>
         <View style={styles.listContainer}>
-            
+            { this.state.list.map(projetct => 
+                <View hey={projetct.id} style={{ marginTop: 15 }}>
+                  <Text style={{ fontWeight: "bold" }}>{projetct.plate}</Text>
+                </View>
+              ) }
         </View>
         <View style={ styles.row }>
           <TouchableOpacity style={styles.button} onPress={this.getList}>
