@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import api from '~/services/api';
-import { List, ListItem } from "react-native-elements";
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { 
@@ -11,6 +10,10 @@ import {
   FlatList
 } from 'react-native';
 
+import { 
+  List, 
+  ListItem 
+} from "react-native-elements";
 
 import styles from './styles';
 
@@ -28,14 +31,13 @@ export default class Dashboard extends Component {
     this.props.navigation.navigate('Main');
     AsyncStorage.removeItem('@easycarros:token');       
   };
-
   
   getList = async () => {
     try {
       const response = await api.get('vehicle');
 
-      const list  = JSON.stringify(response.data.data);
-
+      const list = response && response.data && response.data.data ? JSON.stringify(response.data.data) : [];
+      console.table(list);
       this.setState({ list: list });
       
       
@@ -110,6 +112,7 @@ export default class Dashboard extends Component {
 
   render() {
     const { plate } = this.state;
+    const { list } = this.state;
   
     return(
       <View style={styles.container}>  
@@ -143,17 +146,15 @@ export default class Dashboard extends Component {
             { !!this.state.errorMessage && <View style={styles.containerError}><Text style={styles.textLightError}>{ this.state.errorMessage }</Text></View> }           
         </View>
         <View style={styles.listContainer}>
-          <View>
-            <List>
+            <View>
               <FlatList
                 data={this.state.list}
-                keyExtractor={(x, i) => i}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) =>
                   <ListItem
-                    title={item.plate}
+                    title={`${item.id}`}
                   />}
               />
-            </List>
           </View>
         </View>
         <View style={ styles.row }>
