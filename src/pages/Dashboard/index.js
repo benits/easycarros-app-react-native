@@ -111,7 +111,11 @@ export default class Dashboard extends Component {
             { !!this.state.errorMessage && <View style={styles.containerError}><Text style={styles.textLightError}>{ this.state.errorMessage }</Text></View> }           
         </View>
         <View style={styles.listContainer}>
-            
+            { this.state.list.map(projetct => 
+                <View hey={projetct.id} style={{ marginTop: 15 }}>
+                  <Text style={{ fontWeight: "bold" }}>{projetct.plate}</Text>
+                </View>
+              ) }
         </View>
         <View style={ styles.row }>
           <TouchableOpacity style={styles.button} onPress={this.getList}>
