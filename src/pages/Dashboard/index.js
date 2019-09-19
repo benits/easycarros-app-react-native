@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '~/services/api';
+import { List, ListItem } from "react-native-elements";
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { 
@@ -7,7 +8,7 @@ import {
   View, Text, 
   TextInput, 
   TouchableOpacity,  
-  Image,
+  FlatList
 } from 'react-native';
 
 
@@ -19,7 +20,7 @@ export default class Dashboard extends Component {
  state = {
       loggedTkn: '',
       list: [],
-      plate: ''
+      plate: '',
  }
    
 
@@ -33,9 +34,9 @@ export default class Dashboard extends Component {
     try {
       const response = await api.get('vehicle');
 
-      const { list } = response.data;
+      const list  = JSON.stringify(response.data.data);
 
-      this.setState({ list });
+      this.setState({ list: list });
       
       
     }catch (response) {
@@ -55,9 +56,34 @@ export default class Dashboard extends Component {
         plate: plate
       });
 
-      const { list } = response.data.data['data'];
+      if (response.ok) {
+        this.setState({successMessage: "Adicionado com sucesso!"});
+        setTimeout(() => {this.setState({successMessage: ""})}, 1000)
+      }
+        
+     this.getList();
+     this.setState({errorMessage: '', plate: ''});
+    }catch (response) {
+      var erro = response.data.error['message'];
 
-      this.setState({ list })
+      if (erro === "Should be a valid vehicle plate: XXX0000 ou XXX0X000") {
+        this.setState({errorMessage: 'Deve ser uma placa de veículo válida: XXX0000 ou XXX0X000'});
+      }
+      }
+
+  };
+
+  deleteList = async () => {
+    try {
+      const { plate } = this.state;
+      const response = await api.post('vehicle', {
+        plate: plate
+      });
+
+      if (response.ok) 
+      this.setState({successMessage: 'Adcionado com sucesso'});
+
+     this.getList();
       
     }catch (response) {
       var erro = response.data.error['message'];
@@ -84,17 +110,18 @@ export default class Dashboard extends Component {
 
   render() {
     const { plate } = this.state;
-    const {list} = this.state;
+  
     return(
       <View style={styles.container}>  
       <StatusBar backgroundColor="#3EC3E3" barStyle="light-content"/> 
-        <View style={styles.logoContainer}>
-          <Image style={styles.logo} source={require('../../images/logolight.png')}></Image>
+        <View style={styles.criarContaContainer}>
+              <Text style={styles.textTitle}>FROTA</Text>
         </View>
-        <View style={styles.form}>
-            <View style={styles.criarContaContainer}>
+        <View style={styles.criarContaContainer}>
               <Text style={styles.textLight}>Adicione seu novo carro a frota, digite a placa do veiculo</Text>
             </View>
+        <View style={styles.form}>
+            { !!this.state.successMessage && <View style={styles.containerSuccess}><Text style={styles.textLightError}>{ this.state.successMessage }</Text></View> } 
             <View style={styles.row}>
               <TextInput 
                   style={styles.input}
@@ -112,15 +139,22 @@ export default class Dashboard extends Component {
               <TouchableOpacity style={styles.button} onPress={this.postList}>
                 <Text style={styles.buttonText}>Salvar</Text>
               </TouchableOpacity>
-            </View>
+            </View>                  
             { !!this.state.errorMessage && <View style={styles.containerError}><Text style={styles.textLightError}>{ this.state.errorMessage }</Text></View> }           
         </View>
         <View style={styles.listContainer}>
-            { this.state.list.map(projetct => 
-                <View hey={projetct.id} style={{ marginTop: 15 }}>
-                  <Text style={{ fontWeight: "bold" }}>{projetct.plate}</Text>
-                </View>
-              ) }
+          <View>
+            <List>
+              <FlatList
+                data={this.state.list}
+                keyExtractor={(x, i) => i}
+                renderItem={({ item }) =>
+                  <ListItem
+                    title={item.plate}
+                  />}
+              />
+            </List>
+          </View>
         </View>
         <View style={ styles.row }>
           <TouchableOpacity style={styles.button} onPress={this.getList}>

@@ -14,11 +14,6 @@ const styles = StyleSheet.create({
     barStyle: {
         backgroundColor: colors.primary
     },
-    logoContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-        margin: metrics.baseMargin
-    },
     containerAviso: {
         marginTop: metrics.baseMargin,
         borderRadius: metrics.baserRadius,
@@ -34,8 +29,16 @@ const styles = StyleSheet.create({
         backgroundColor: colors.danger,
         
     },
+    containerSuccess: {
+        margin: metrics.baseMargin / 2,
+        borderRadius: metrics.baserRadius,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: colors.sucess,
+        
+    },
     form: {
-        marginTop: metrics.baseMargin * 2,
+        marginTop: metrics.baseMargin,
     },
     row: {
         flexDirection: "row"
@@ -89,6 +92,12 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 17
     },
+    textTitle: {
+        color: colors.lighter,
+        textAlign: "center",
+        fontWeight: "bold",
+        fontSize: 24
+    },  
     textLightError: {
         padding: 5, 
         color: colors.lighter,
@@ -111,10 +120,37 @@ const styles = StyleSheet.create({
         marginTop: metrics.baseMargin,
         borderRadius: metrics.baserRadius,
         backgroundColor: colors.lighter,
-        padding: metrics.basePadding ,
         justifyContent: "center",
         alignItems: 'stretch'
-    }
+    },
+    listItem: {
+        margin: metrics.baseMargin,
+        backgroundColor: colors.whiteTransparent,
+        borderRadius: metrics.baserRadius,
+        height: 60,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    buttonItem: {
+        alignSelf: 'flex-start'
+    },
+    rowFront: {
+		alignItems: 'center',
+		backgroundColor: '#CCC',
+		borderBottomColor: 'black',
+		borderBottomWidth: 1,
+		justifyContent: 'center',
+		height: 50,
+	},
+	rowBack: {
+		alignItems: 'center',
+		backgroundColor: '#DDD',
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingLeft: 15,
+	},
 
 });
 
