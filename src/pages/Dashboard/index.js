@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import api from '~/services/api';
-import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { 
