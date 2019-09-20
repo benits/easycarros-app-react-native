@@ -14,6 +14,7 @@ Nessa tela o usário pode **Adicionaros** novos carros a frota ou **Deletar** os
   <img style="float: right;" src="https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/01.jpg" width="400" height="790">
 </div>
 
+**Você pose ver mais ScreenShots do app - [Clique e acesse agora!](https://blog.da2k.com.br "Clique e acesse agora!")**
 
 # Como iniciar o aplicativo?
 
