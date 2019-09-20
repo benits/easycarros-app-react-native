@@ -61,8 +61,8 @@ export default class Dashboard extends Component {
         setTimeout(() => {this.setState({successMessage: ""})}, 3000)
       }
         
-     this.getList();
-     this.setState({errorMessage: '', plate: ''});
+      this.getList();
+      this.setState({errorMessage: '', plate: ''});
     }catch (response) {
       var erro = response.data.error['message'];
 
