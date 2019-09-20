@@ -16,8 +16,8 @@ import styles from './styles';
 export default class Main extends Component {
   state = {
     loggedTkn: null,
-    useremail: 'frontend-dev@easycarros.com',
-    password: 'Fr0nt3ndR0ck5!',
+    useremail: useremail,
+    password: password,
     errorMessage: null
     
   };
