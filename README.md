@@ -4,11 +4,12 @@ Desafio Easy Carros para frontend developers, aplicação em react native com si
 
 Nessa tela o usário pode **Adicionaros** novos carros a frota ou **Deletar** os mesmos.
 
-**Tecnologia usadas**
+**O que foi usado:**
 - React Native
 - apisauce - ```Consumir a API```
+- AsyncStorage
 
-
+[! telaLogin](https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/09.jpg)
 
 
 
