@@ -9,7 +9,8 @@ Nessa tela o usário pode **Adicionaros** novos carros a frota ou **Deletar** os
 - apisauce - ```Consumir a API```
 - AsyncStorage
 
-[! telaLogin](https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/09.jpg)
+<img src="https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/10.jpg" style="heigth: 250px">
+
 
 
 
