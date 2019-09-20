@@ -9,9 +9,10 @@ Nessa tela o usário pode **Adicionaros** novos carros a frota ou **Deletar** os
 - apisauce - ```Consumir a API```
 - AsyncStorage
 
-<img src="https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/10.jpg" style="heigth: 250px">
-
-
+<div style="flex: 1; justifyContent: row; alignItem: space-around">
+  <img sstyle="float: left;" src="https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/10.jpg" width="400" height="790">     
+  <img style="float: right;" src="https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/01.jpg" width="400" height="790">
+</div>
 
 
 # Como iniciar o aplicativo?
