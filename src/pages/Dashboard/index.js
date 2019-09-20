@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import api from '~/services/api';
 import AsyncStorage from '@react-native-community/async-storage';
 
+
 import { 
   StatusBar, 
   View, Text, 
@@ -10,10 +11,7 @@ import {
   FlatList
 } from 'react-native';
 
-import { 
-  List, 
-  ListItem 
-} from "react-native-elements";
+
 
 import styles from './styles';
 
@@ -36,8 +34,8 @@ export default class Dashboard extends Component {
     try {
       const response = await api.get('vehicle');
 
-      const list = response && response.data && response.data.data ? JSON.stringify(response.data.data) : [];
-      console.table(list);
+      const list = response && response.data && response.data.data ? response.data.data : [];
+
       this.setState({ list: list });
       
       
@@ -60,7 +58,7 @@ export default class Dashboard extends Component {
 
       if (response.ok) {
         this.setState({successMessage: "Adicionado com sucesso!"});
-        setTimeout(() => {this.setState({successMessage: ""})}, 1000)
+        setTimeout(() => {this.setState({successMessage: ""})}, 3000)
       }
         
      this.getList();
@@ -75,24 +73,21 @@ export default class Dashboard extends Component {
 
   };
 
-  deleteList = async () => {
+  deleteList = async (id) => {
     try {
-      const { plate } = this.state;
-      const response = await api.post('vehicle', {
-        plate: plate
-      });
+      const response = await api.delete(`vehicle/${id}`);
 
       if (response.ok) 
-      this.setState({successMessage: 'Adcionado com sucesso'});
-
+        this.setState({successMessage: 'Excluido com sucesso'});
+        setTimeout(() => {this.setState({successMessage: ''})}, 3000)
      this.getList();
       
     }catch (response) {
       var erro = response.data.error['message'];
 
-      if (erro === "Should be a valid vehicle plate: XXX0000 ou XXX0X000") {
-        this.setState({errorMessage: 'Deve ser uma placa de veículo válida: XXX0000 ou XXX0X000'});
-      }
+      
+      this.setState({errorMessage: erro});
+      
       }
 
   };
@@ -115,7 +110,7 @@ export default class Dashboard extends Component {
     const { list } = this.state;
   
     return(
-      <View style={styles.container}>  
+    <View style={styles.container}>  
       <StatusBar backgroundColor="#3EC3E3" barStyle="light-content"/> 
         <View style={styles.criarContaContainer}>
               <Text style={styles.textTitle}>FROTA</Text>
@@ -128,7 +123,7 @@ export default class Dashboard extends Component {
             <View style={styles.row}>
               <TextInput 
                   style={styles.input}
-                  autoCapitalize= "none"
+                  autoCapitalize= "characters"
                   autoCorrect= {false}
                   maxLength= {7}
                   placeholder= "Digite a placa do seu veiculo"
@@ -145,26 +140,24 @@ export default class Dashboard extends Component {
             </View>                  
             { !!this.state.errorMessage && <View style={styles.containerError}><Text style={styles.textLightError}>{ this.state.errorMessage }</Text></View> }           
         </View>
-        <View style={styles.listContainer}>
-            <View>
-              <FlatList
-                data={this.state.list}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) =>
-                  <ListItem
-                    title={`${item.id}`}
-                  />}
-              />
-          </View>
+        <View style={styles.listContainer}>                                 
+            <FlatList 
+              keyExtractor={item => item.id} 
+              data={this.state.list} renderItem={({ item }) => { 
+                return (
+                  <View style={styles.listContainerItem}>
+                      <Text style={styles.textItem} key={item.id}>Placa: {item.plate}</Text>
+                      <TouchableOpacity style={styles.buttonDelete} onPress={() => this.deleteList(item.id)}>
+                         <Text style={styles.buttonTextDelete}>X</Text>
+                      </TouchableOpacity>
+                  </View>)
+                }} />     
         </View>
-        <View style={ styles.row }>
-          <TouchableOpacity style={styles.button} onPress={this.getList}>
-                  <Text style={styles.buttonText}>Atualiza</Text>
-          </TouchableOpacity> 
-          <TouchableOpacity style={styles.buttonLogout} onPress={this.logout}>
-                  <Text style={styles.buttonText}>Sair</Text>
-          </TouchableOpacity>
-        </View>   
+         
+            <TouchableOpacity style={styles.buttonLogout} onPress={this.logout}>
+              <Text style={styles.buttonText}>Sair</Text>
+            </TouchableOpacity>
+       
       </View>
     )
   }

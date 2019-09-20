@@ -43,6 +43,11 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row"
     },
+    rowBtn: {
+        flexDirection: "row",
+        justifyContent: "space-around", 
+        alignItems: "stretch"       
+    },
     input: {
         backgroundColor: colors.whiteTransparent,
         borderRadius: metrics.baserRadius,
@@ -50,18 +55,21 @@ const styles = StyleSheet.create({
         paddingHorizontal: metrics.basePadding,
         marginTop: metrics.baseMargin * 2,
     },
+    textItem: {
+        color: colors.white,
+        fontWeight: "bold",
+        textTransform: "uppercase"
+    },
     buttonLogout: {
-        marginLeft: 8,
         backgroundColor: colors.danger,
         borderRadius: metrics.baserRadius,
         marginTop: metrics.baseMargin * 2,
         height: 44,
-        width: 80,
         justifyContent: "center",
         alignItems: "center"
     },
     button: {
-        marginLeft: 8,
+        marginLeft: metrics.baseMargin,
         backgroundColor: colors.secondary,
         borderRadius: metrics.baserRadius,
         marginTop: metrics.baseMargin * 2,
@@ -69,6 +77,19 @@ const styles = StyleSheet.create({
         width: 80,
         justifyContent: "center",
         alignItems: "center"
+    },
+    buttonDelete: {
+        backgroundColor: colors.danger,
+        borderRadius: metrics.baserRadius,
+        height: 44,
+        width: 44,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    buttonTextDelete: {
+        color: colors.white,
+        fontWeight: "bold",
+        fontSize: 20,
     },
     buttonText: {
         color: colors.white,
@@ -84,6 +105,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginTop: metrics.baseMargin 
+    },
+    textLightItem: {
+        color: colors.white,
     },
     textLight: {
         paddingTop: metrics.basePadding / 2, 
@@ -115,22 +139,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    listContainer: {
+    listContainerItem: {
         flex: 1,
-        marginTop: metrics.baseMargin,
-        borderRadius: metrics.baserRadius,
-        backgroundColor: colors.lighter,
-        justifyContent: "center",
-        alignItems: 'stretch'
-    },
-    listItem: {
         margin: metrics.baseMargin,
         backgroundColor: colors.whiteTransparent,
         borderRadius: metrics.baserRadius,
         height: 60,
         flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
+       
+
+    },
+    listContainer: {
+        flex: 1,
+        marginTop: metrics.baseMargin,
+        backgroundColor: colors.whiteTransparent,
+        borderRadius: metrics.baserRadius,
+        flexDirection: "row",
         justifyContent: "center",
+        alignItems: "stretch",
+
+    },
+    listItem: {
         alignItems: "center"
+       
     },
     buttonItem: {
         alignSelf: 'flex-start'
@@ -150,7 +183,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		paddingLeft: 15,
-	},
+    },
+    
 
 });
 
