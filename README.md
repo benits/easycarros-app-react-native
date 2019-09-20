@@ -2,7 +2,7 @@
 
 Desafio Easy Carros para frontend developers, aplicação em react native com sistema de autenticação de login, assim que o usuário é autenticado ele é redirecionado para o dashboard onde ele pose visualizar de uma forma simples e objetiva a lista de carros da sua frota.
 
-Nessa tela o usário pode **Adicionaros** novos carros a frota ou **Deletar** os mesmos.
+Nessa tela o usário pode **Adicionar** os novos carros a frota ou **Deletar** os mesmos.
 
 **O que foi usado:**
 - React Native
@@ -14,7 +14,7 @@ Nessa tela o usário pode **Adicionaros** novos carros a frota ou **Deletar** os
   <img style="float: right;" src="https://github.com/benits/easycarros-app-react-native/blob/master/examples/screenshots/01.jpg" width="400" height="790">
 </div>
 
-**Você pose ver mais ScreenShots do app - [Clique e acesse agora!](https://https://github.com/benits/easycarros-app-react-native/tree/master/examples/screenshots "Clique e acesse agora!")**
+**Você pode ver mais ScreenShots do app - [Clique e acesse agora!](https://https://github.com/benits/easycarros-app-react-native/tree/master/examples/screenshots "Clique e acesse agora!")**
 
 # Como iniciar o aplicativo?
 
