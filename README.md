@@ -74,10 +74,13 @@ Se tudo correr bem, você verá a seguinte mensagem no seu terminal:
 Significa que a porta 8181 está em uso no seu computador. Para utilizar uma porta diferente, rode:
 ```
 PORT='<OUTRA PORTA>' yarn start
+```
 Se tiver problemas com CORS:
+
 Altere o arquivo .env para as configurações do app frontend
 
+```
 APP_HOST=localhost
 APP_PORT=3000
-
 ```
+
