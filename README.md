@@ -40,7 +40,7 @@ Para utilizar o aplicativo utilize as Credenciais válidas:
 
 # A API
 
-*Pré-requisitos
+* Pré-requisitos
 Você deve instalar os seguintes pacotes antes de prosseguir:
 
 ```yarn```
