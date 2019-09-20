@@ -16,8 +16,8 @@ import styles from './styles';
 export default class Main extends Component {
   state = {
     loggedTkn: null,
-    useremail: useremail,
-    password: password,
+    useremail: '',
+    password: '',
     errorMessage: null
     
   };
@@ -36,7 +36,8 @@ export default class Main extends Component {
       const token = response.data.data['token']
 
       await AsyncStorage.multiSet([
-        ['@easycarros:token', token]
+        ['@easycarros:token', token],
+        ['@easycarros:email', useremail]
       ]);
 
 
@@ -70,6 +71,11 @@ export default class Main extends Component {
 
   async componentDidMount() {
     const token = await AsyncStorage.getItem('@easycarros:token')
+    const email = await AsyncStorage.getItem('@easycarros:email')
+
+    if (email) {
+      this.setState({ useremail: email });      
+    }
     
     if (token) {
       this.setState({ loggedTkn: token });
