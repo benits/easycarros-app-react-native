@@ -21,7 +21,7 @@ Nessa tela o usário pode **Adicionar** os novos carros a frota ou **Deletar** o
 
 1. De um git clone em nosso repositório ou baixe o zip 
 
-2. Abra o CMD cá a até a pasta da raiz da aplicação e de execute 
+2. Abra o CMD vá a até a pasta da raiz da aplicação e de execute 
 
 * ```o comando "yarn" ou "npm install"```.
 
