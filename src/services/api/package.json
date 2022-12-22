@@ -30,7 +30,7 @@
     "dotenv": "^8.1.0",
     "express": "^4.16.4",
     "highland": "^2.13.3",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "level": "^4.0.0",
     "permit": "^0.2.4",
     "rimraf": "^2.6.3",
